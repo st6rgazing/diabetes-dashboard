@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 import numpy as np
-import seaborn as snsgi
+import seaborn as sns
 
-#from ydata_profiling import ProfileReport
-#from streamlit_pandas_profiling import st_profile_report
+from ydata_profiling import ProfileReport
+from streamlit_pandas_profiling import st_profile_report
 
 st.set_page_config(
     page_title="Diabetes Dashboard 🩺",
