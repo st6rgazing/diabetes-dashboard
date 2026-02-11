@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 import numpy as np
-import seaborn as sns
+import seaborn as snsgi
 
-from ydata_profiling import ProfileReport
+#from ydata_profiling import ProfileReport
 #from streamlit_pandas_profiling import st_profile_report
 
 st.set_page_config(
