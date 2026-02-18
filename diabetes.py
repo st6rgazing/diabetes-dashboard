@@ -7,8 +7,8 @@ import streamlit as st
 import numpy as np
 import seaborn as sns
 
-# from ydata_profiling import ProfileReport
-# from streamlit_pandas_profiling import st_profile_report
+from ydata_profiling import ProfileReport
+from streamlit_pandas_profiling import st_profile_report
 
 st.set_page_config(
     page_title="Diabetes Dashboard 🩺",
@@ -19,7 +19,7 @@ st.set_page_config(
 
 ## Step 01 - Setup
 st.sidebar.title("Diabetes Data🏡")
-page = st.sidebar.selectbox("Select Page",["Introduction 📘","Visualization 📊", "Automated Report 📑"])
+page = st.sidebar.selectbox("Select Page",["Introduction 📘","Visualization 📊", "Prediction"])
 
 
 #st.video("video.mp4")
@@ -83,12 +83,7 @@ elif page == "Visualization 📊":
         ## render the plot in streamlit 
         st.pyplot(fig_corr)
 
-# elif page == "Automated Report 📑":
-#     st.subheader("03 Automated Report")
-#     if st.button("Generate Report"):
-#         with st.spinner("Generating report..."):
-#             profile = ProfileReport(df,title="Diabetes Report",explorative=True,minimal=True)
-#             st_profile_report(profile)
-
-#         export = profile.to_html()
-#         st.download_button(label="📥 Download full Report",data=export,file_name="california_housing_report.html",mime='text/html')
+elif page == "Prediction":
+    df = pd.read_csv('diabetes.csv')
+    st.dataframe(df.head())
+    df2 = df.drop([])
