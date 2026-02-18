@@ -6,6 +6,9 @@ import seaborn as sns
 import streamlit as st
 import numpy as np
 import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error, explained_variance_score
+from sklearn.linear_model import LinearRegression
 
 st.set_page_config(
     page_title="Diabetes Dashboard 🩺",
@@ -82,5 +85,17 @@ elif page == "Visualization 📊":
 
 elif page == "Prediction":
     df = pd.read_csv('diabetes.csv')
+    df = df.dropna()
     st.dataframe(df.head())
-    df2 = df.drop([])
+    X = df.drop(['Glucose'],axis =1)
+    y = df['Glucose']
+
+    X_train, X_test, y_train,y_test = train_test_split(X,y,test_size=0.2)
+    lr = LinearRegression()
+    lr.fit(X_train,y_train)
+    predictions = lr.predict(X_test)
+
+    st.write("1) The model explains ",explained_variance_score(y_test),"% of variance of the target feature")
+    st.write("2) The mean absolute error is ",mean_absolute_error(y_test,predictions),".")
+
+    
