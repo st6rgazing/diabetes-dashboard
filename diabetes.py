@@ -86,8 +86,10 @@ elif page == "Visualization 📊":
 elif page == "Prediction":
     df = pd.read_csv('diabetes.csv')
     df = df.dropna()
+    list_var = df.columns
+    input_variables = st.sidebar.multiselect("Select explanatory variables",list_var)
     st.dataframe(df.head())
-    X = df.drop(['Glucose'],axis =1)
+    X = df[input_variables]
     y = df['Glucose']
 
     X_train, X_test, y_train,y_test = train_test_split(X,y,test_size=0.2)
@@ -95,7 +97,7 @@ elif page == "Prediction":
     lr.fit(X_train,y_train)
     predictions = lr.predict(X_test)
 
-    st.write("1) The model explains ",explained_variance_score(y_test),"% of variance of the target feature")
+    st.write("1) The model explains ",explained_variance_score(y_test,predictions),"% of variance of the target feature")
     st.write("2) The mean absolute error is ",mean_absolute_error(y_test,predictions),".")
 
     
